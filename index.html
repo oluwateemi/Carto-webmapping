@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carto-Webmapping</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/jpg" href="image/Favicon.png" />
+</head>
+
+<body>
+    <header>
+        <nav class="navigation">
+            <!--the navigation does not have to be in the header, it can also be placed somewhere else-->
+            <ul>
+                <!--the navigation items correspond with the upcomming assignments and you fill the pages progressively-->
+                <!--Home - WM1-->
+                <li><a href="index.html" class="active">Home - WM1</a></li>
+                <!--SVG - MMC2-->
+                <li><a href="mmc2.html">MMC2</a></li>
+                <!--Static map and Leaflet map - WM2-->
+                <li><a href="wm2.html">WM2</a></li>
+                <!--Responsive - MMC3-->
+                <li><a href="mmc3.html">MMC3</a></li>
+                <!--Basemap - WM3-->
+                <li><a href="wm3.html">WM3</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!--Hero section-->
+        <section class="hero-index">
+            <div class="hero-content">
+                <h1>
+                    Light Campus: Federal University of technology, Akure, Nigeria
+                </h1>
+                <p>
+                    Mapping Streetlight Accessibility and Electricity Gaps Around FUTA.
+                </p>
+            </div>
+        </section>
+
+
+        <!--Content sections for introduction text-->
+        <section class="content-section">
+            <div class="container">
+                <p>Access to reliable electricity and functional street lighting is an important part of campus
+                    accessibility, safety, and everyday mobility. In 2024, a group of young mappers set out to document
+                    the electricity situation around the Federal University of Technology, Akure (FUTA), with a focus on
+                    streetlights and dark areas within the campus environment. The project responded to growing concerns
+                    from students who often move across campus between classes and their homes, especially at night,
+                    when lighting conditions directly affect safety and ease of movement.</p>
+                <p>Before then, FUTA was known for enjoying a relatively steady power supply, often ranging between 22
+                    and 24 hours of electricity daily. However, a statement released by the university in late 2023
+                    indicated a reduction in electricity availability to about 8 to 10 hours per day. This change made
+                    it necessary to better understand how reduced power supply was affecting streetlight performance and
+                    the visibility of roads and other campus spaces. These streetlights are especially important, as
+                    many students use them as places to study when there is no power in their hostels or classrooms.</p>
+            </div>
+        </section>
+
+        <!--Introduction image section-->
+        <section class="content-section">
+            <div class="container">
+                <figure>
+                    <img src="image/map2.jpg"
+                        alt="Figure 1: Map showing the street light poles locations and road network.">
+                    <figcaption>Figure 1: Map showing the street light poles locations and road network.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!--Why the project section-->
+        <section class="content-section">
+            <div class="container">
+                <h3>Why the Project</h3>
+                <p>Streetlight mapping was therefore used as a practical tool to identify black and light zones across
+                    the campus. The project aimed to assess and categorise streetlights based on their working condition
+                    and power source, identify clusters of damaged or non-functional streetlights for targeted
+                    maintenance, locate old streetlight removals for better organisation along roads, and map dark
+                    regions on campus, especially road networks. It also sought to provide university authorities with a
+                    decision map showing areas that require urgent repairs and upgrades.
+                </p>
+            </div>
+        </section>
+
+        <!--Introduction image section-->
+        <section class="content-section">
+            <div class="container">
+                <figure>
+                    <img src="image/map1.jpg" alt="Figure 2: 17-meter radius lit area on the road network.">
+                    <figcaption>Figure 2: 17-meter radius lit area on the road network.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!--Data processing and map design section-->
+        <section class="content-section">
+            <div class="container">
+                <h3>Data Processing and Map Design</h3>
+                <p>The collected data were cleaned and validated by the Youthmappersfuta team using QGIS. Several
+                    geoprocessing operations, including clipping, filtering, and buffering, were performed to extract
+                    the areas illuminated within a 17-meter radius along the roads.
+                    For the map design, the processed data were exported from QGIS into illustrator as SVG layers, allowing
+                    each layer to be styled individually. A dark theme was applied to improve visual contrast and
+                    clearly communicate the areas effectively covered by streetlights. The final map highlights the
+                    spatial extent of streetlight coverage across the campus and presents the lit and unlit areas in a
+                    visually engaging format.
+                </p>
+            </div>
+        </section>
+
+
+        <!--Map container-->
+        <section class="content-section">
+            <div class="container">
+                <!-- The map container placed inside the legend -->
+                <div class="map-container">
+                    <figure>
+                        <img src="image/StreetLight-FUTA.png" class="styled-map" alt="FUTA Project Image">
+                            <figcaption>Figure 3: Final map created in illustrator.
+                            </figcaption>  
+                    </figure>
+
+
+                    <!--Legend container -->
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <img src="image/Pole.svg" class="legend-svg">
+                            <span class="label">Street Pole</span>
+                        </div>
+
+                        <!-- second legend item -->
+                        <div class="legend-item">
+                            <img src="image/Light pole.svg" class="legend-svg">
+                            <span class="label">Light road</span>
+                        </div>
+                        <!-- Third legend item -->
+                        <div class="legend-item">
+                            <img src="image/Dark Pole.svg" class="legend-svg">
+                            <span class="label">Dark road</span>
+                        </div>
+                    </div>
+
+                </div> <!-- End of map-container -->
+
+            </div>
+        </section>
+
+
+        <!--Final Note Section-->
+        <section class="content-section">
+            <div class="container">
+                <h3>Final Note</h3>
+                <p>This project is important because it helps reveal the relationship between electricity supply,
+                    streetlight coverage, and campus accessibility at FUTA. By identifying dark road sections and
+                    non-functional streetlights, the map provides useful evidence for improving safety, supporting
+                    student movement at night, and guiding future maintenance decisions. It also shows how student-led
+                    mapping can turn local observations into practical information for planning and action.
+                </p>
+            </div>
+        </section>
+
+        <!--Credit section-->
+        <section class="content-section">
+            <div class="container">
+                <h3>Credits</h3>
+                <p>Source: YouthMappersFUTA | Design: Michael Olanrewaju | CC BY 4.0 </p>
+        </section>
+    </main>
+
+    <!--Footer section-->
+    <footer>
+        <div class="footer-content" <p>&copy; 2026 | Michael Olanrewaju | Carto-Webmapping</p>
+        </div>
+    </footer>
+</body>
+
+</html>
