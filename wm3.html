@@ -4,9 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carto-Webmapping</title>
+    <title>Custom basemap for streetlight mapping FUTA</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="stylemap.css" />
     <link rel="icon" type="image/jpg" href="image/Favicon.png" />
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.5.0/dist/maplibre-gl.css" />"
+    <script src="https://unpkg.com/maplibre-gl@5.5.0/dist/maplibre-gl.js"></script>
 </head>
 
 <body>
@@ -29,16 +32,240 @@
         </nav>
     </header>
     <main>
-        <section class="">
-            <div class="">
-                <h1></h1>
+        <!--Hero section-->
+        <section class="hero-index">
+            <div class="hero-content">
+                <h1>
+                    Custom Basemap for Streetlight Mapping FUTA
+                </h1>
+                <p>
+                    A custom basemap designed for mapping streetlight accessibility and electricity gaps around the
+                    Federal University of Technology, Akure (FUTA), Nigeria.
+                </p>
             </div>
         </section>
+
+
+        <!--Content sections for introduction text, added a section with a div class container for the paragraph text-->
+        <section class="content-section">
+            <div class="container">
+                <p> This basemap uses a dark theme to visually reflect the lighting conditions
+                    around the Federal University of Technology, Akure (FUTA), Nigeria.
+                    Primary roads are rendered in near-white to represent lit corridors,
+                    while minor roads and paths appear dim to suggest areas with poor or
+                    absent streetlight coverage. The OpenFreeMap vector tileset (OpenMapTiles
+                    schema, © OpenStreetMap contributors) is used as the data source,
+                    focused on zoom levels 10–18 to keep the map within the campus scale.
+                    Buildings and vegetation are rendered in dark tones to avoid competing
+                    with the road hierarchy, which is the map's primary focus. To ensure the basemap effectively
+                    communicate the intended visual hierarchy, I used dasharray for the roads, having
+                    different zone levels functions to reduce cognitive load. </p>
+            </div>
+        </section>
+
+        <!--Map container section class="map-container". This contains all the map elements-->
+        <section class="content-section">
+
+            <!-- The map container placed inside the legend -->
+            <div class="map-container">
+                <div id="map"></div>
+                <script>
+                    const map = new maplibregl.Map({
+                        container: 'map', // This tells MapLibre GL JS to render the map in the <div> element with the id "map"
+                        style: './light_campus_futa_dark_map.json', //The path to the custom style JSON file created in Maputnik
+                        center: [5.1341, 7.3045],
+                        zoom: 14, // Initial zoom level focused on the campus area
+                        minZoom: 10,
+                        maxZoom: 18,
+                        maxBounds: [[4.8, 6.9], [5.5, 7.6]], // This restricts the map to the area around FUTA, preventing users from panning too far away from the campus
+                    });
+
+                    // Add standard zoom (+/-) and rotation controls to the map
+                    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+                    //Maplibre GL JS event listener for when the map has finished loading, which is where we set up our interactive popups and other map interactions
+                    map.on('load', () => {
+
+                        // Popup interaction for the streetlight points when user clicked on the point layer
+                        const myPointLayerId = 'streetlight-circle';
+
+                        // Listen for click events on the point layer
+                        map.on('click', myPointLayerId, (e) => {
+                            const coordinates = e.features[0].geometry.coordinates.slice();
+
+                            // Extract the properties of the clicked feature event, which contains the FUTA streetlight data
+                            const props = e.features[0].properties;
+
+                            // This show the following properties in the popup, and the || operator means that if the property is missing or null, it will display 'Unknown' instead
+                            const condition = props['Condition'] || 'Unknown';
+                            const location = props['Streetligh'] || 'Unknown';
+                            const power = props['Streetli_1'] || 'Unknown';
+                            const age = props['Old or New'] || 'Unknown';
+                            const campus = props['Campus nam'] || 'FUTA';
+
+                            //The table for the popup content, which is styled in the CSS file, and the values are dynamically inserted from the clicked feature's properties
+                            const popupHTML = `
+                                <div class="streetlight-popup">
+                                    <div class="popup-title"> Streetlight Information </div>
+
+                                    <div class="popup-row">
+                                        <span class="label">Condition</span>
+                                        <span class="value">${condition}</span>
+                                    </div>
+
+                                    <div class="popup-row">
+                                        <span class="label">Type</span>
+                                        <span class="value">${location}</span>
+                                    </div>
+
+                                    <div class="popup-row">
+                                        <span class="label">Power</span>
+                                        <span class="value">${power}</span>
+                                    </div>
+
+                                    <div class="popup-row">
+                                        <span class="label">Age</span>
+                                        <span class="value">${age}</span>
+                                    </div>
+                                </div>
+                            `;
+
+                            // This maplibre-gl function to create and display a popup at the clicked location with the generated HTML content
+                            new maplibregl.Popup({ closeButton: false, offset: 15 })
+                                .setLngLat(coordinates)
+                                .setHTML(popupHTML)
+                                .addTo(map);
+
+                            map.flyTo({
+                                center: coordinates, // Fly to the coordinates of the clicked streetlight
+                                zoom: 17,            // Zoom in closer to the streetlight
+                                speed: 1.2,          // Controls the speed of the flight (1.2 is smooth)
+                                curve: 1.42,         // Adds a natural "slowing down" curve at the end
+                                pitch: 15            // Tilts the map for a more immersive view of the streetlight location
+                            });
+                        });
+
+                        // Change the mouse cursor to a clicking hand when hovering over a point
+                        map.on('mouseenter', myPointLayerId, () => {
+                            map.getCanvas().style.cursor = 'pointer';
+                        });
+
+                        // Change the cursor back to a normal arrow when moving off the point
+                        map.on('mouseleave', myPointLayerId, () => {
+                            map.getCanvas().style.cursor = '';
+                        });
+
+                    });
+
+                </script>
+
+                <!--Legend container -->
+                <div class="basemap-legend">
+                    <div class="legend-item">
+                        <img src="image/Pole.svg" class="legend-svg">
+                        <span class="label">Streetlight Pole</span>
+                    </div>
+
+                    <!-- second legend item -->
+                    <div class="legend-item">
+                        <img src="image/Light pole.svg" class="legend-svg">
+                        <span class="label">Lit Area</span>
+                    </div>
+                    <!-- Third legend item -->
+                    <div class="legend-item">
+                        <img src="image/Dark Pole.svg" class="legend-svg">
+                        <span class="label">Dark road</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!--Final Note Section-->
+        <section class="content-section">
+            <div class="container">
+                <h3>Final Notes</h3>
+                <p>Three custom GeoJSON datasets, all provided under the Open Database License (ODbL), are integrated
+                    into the map. These include the FUTA campus boundary, individual streetlight pole locations
+                    (originally surveyed by YouthMappersFUTA and contributed to OpenStreetMap), and a 17-metre
+                    illumination buffer derived from this OSM data via spatial analysis in QGIS; representing the area
+                    each streetlight realistically illuminates along the road network. The high-contrast dark foundation
+                    ensures that these thematic layers remain the immediate visual focus, directly reflecting the real
+                    experience of navigating a campus with unreliable electricity supply where functional streetlights
+                    define the boundary between safe and unsafe movement at night.</p>
+                <ul>
+                    <li><strong>
+                            <h4>Base Map Styling</h4>
+                        </strong>
+                        <p>Two circle styles were used for streetlight markers, one of which includes a blur effect
+                            added in Maputnik.
+                            The basemap also includes a set center coordinate, zoom level, change glyphs url to
+                            tile.OpenFreeMap as the base source,
+                            and a custom projection.
+                            Place labels were updated to use a free font (Noto Sans) because the default font was not
+                            rendering properly on the web.</p>
+                    </li>
+                    <li><strong>
+                            <h4>Custom GeoJSON Layers</h4>
+                        </strong>
+                        <p>Added a custom data source (GeoJSON) layer for the streetlight pole locations, styled with a
+                            unique icon and popup information.</p>
+                    </li>
+                    <li><strong>
+                            <h4>Interactive Camera Animation and Popup</h4>
+                        </strong>
+                        <p>I enhanced the experience to allow the basemap to fly to the streetlight location when user clicks on
+                            it. I implemented the <code>map.flyTo()</code> method to smoothly animate the camera to a
+                            clicked streetlight, while simultaneously triggering a custom-styled popup that dynamically
+                            pulls the specific attributes from the GeoJSON properties.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Credit section -->
+        <!--Include the credit section for all datasets used for the map which include the license information and attribution-->
+        <section class="content-section">
+            <div class="container">
+                <h3>Credits</h3>
+                <p>
+                    Streetlight survey data and campus boundary contributed to
+                    OpenStreetMap by YouthMappersFUTA, October 2023 |
+                    Design &amp; Web Implementation: Michael Olanrewaju |
+                    <a href="https://opendatacommons.org/licenses/odbl/" target="_blank">
+                        ODbL
+                    </a>
+                </p>
+                <p>
+                    Basemap:
+                    <a href="https://openfreemap.org" target="_blank">OpenFreeMap</a>
+                    ©
+                    <a href="https://openmaptiles.org" target="_blank">OpenMapTiles</a>
+                    ©
+                    <a href="https://www.openstreetmap.org/copyright" target="_blank">
+                        OpenStreetMap contributors
+                    </a>
+                    |
+                    <a href="https://opendatacommons.org/licenses/odbl/" target="_blank">
+                        ODbL
+                    </a>
+                </p>
+                <p>
+                    17m Illumination Buffer: derived from OpenStreetMap streetlight
+                    data | Spatial analysis performed in QGIS |
+                    <a href="https://opendatacommons.org/licenses/odbl/" target="_blank">
+                        ODbL
+                    </a>
+                </p>
+            </div>
+        </section>
+
     </main>
+
+    <!--Footer section-->
     <footer>
-      <!--div class="footer-content"><p>&copy; 2024 | Michael Olanrewaju | Carto-Webmapping</p></div>
+        <div class="footer-content" <p>&copy; 2026 | Michael Olanrewaju | Carto-Webmapping</p>
         </div>
-        --> 
     </footer>
 </body>
 

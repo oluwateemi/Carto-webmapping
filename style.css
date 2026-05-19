@@ -1,17 +1,18 @@
 /* 1. Global Control Panel */
 :root {
-  --primary-color: #090A0C;
+  --primary-color: #090a0c;
   --bg-white: #ffffff;
   --bg-subtle: #f6f6f6;
   --text-subtle: #626871;
   --text-dark: #3a404b;
+  --text-dark-subtle: #bec1c5;
   --text-muted: #555555;
   --border-default: #dddddd;
-  
-   /* Typeface */
-  --font-heading: 'inter', serif;
-  --font-body: 'Inter', sans-serif;
-  
+
+  /* Typeface */
+  --font-heading: "inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+
   /* Global width for all content */
   --max-width: 1100px;
   --nav-gap: 16px;
@@ -20,15 +21,21 @@
 
 /* website smooth scroll*/
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 
 /* Global Type*/
 h1 {
@@ -47,69 +54,69 @@ h3 {
   margin-bottom: 8px;
 }
 
+h4 {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+
 p {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--text-dark);
   margin-bottom: 12px;
 }
 
-
 /* Global img structure*/
-img {
-  max-width: 100%; 
-  height: auto;    /* Keeps the image from looking squashed */
-  display: block;  /* Removes the tiny gap at the bottom of images */
-  margin: 0 auto;  /* Centers the image if it's smaller than the container */
+figure img {
+  max-width: 100%;
+  height: auto; /* Keeps the image from looking squashed */
+  display: block; /* Removes the tiny gap at the bottom of images */
+  margin: 0 auto;   /* Centers the image if it's smaller than the container */
   border: 1.5px solid var(--bg-subtle);
   border-radius: 18px;
-
 }
-
 
 
 figcaption {
-    font-family: var(--font-body);
-    text-align: center;
-    font-size: 13px;
-    color: var(--text-subtle);
-    font-style: italic;
-    margin-top: 16px; /* 10px space between image and caption */
-    margin-bottom: 8px;  /* 8px space before the next paragraph starts */
+  font-family: var(--font-body);
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-subtle);
+  font-style: italic;
+  margin-top: 16px; /* 16px space between image and caption */
+  margin-bottom: 8px;  /* 8px space before the next paragraph starts */
+  line-height: 1.8;
 }
+
 
 /* Navigation menu for pages */
 .navigation {
   width: 100%;
   max-width: var(--max-width);
   padding: 0 20px; /* Essential for mobile view */
-  margin-top: 16px;
+  margin-top: 16px; 
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Global width for all content */ 
-.container {
-  width: 100%;
-  max-width: var(--max-width);
-  padding: 0 20px; /* Essential for mobile view */
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 
-/* Header */ 
+
+/* Header */
 header {
-    position: absolute; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;        /* Ensures nav stays on top of the image */
-    background: transparent; 
-    justify-content: center;
-    display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  /* Ensures nav stays on top of the image */
+  background: transparent;
+  justify-content: center;
+  display: flex;
 }
 
 /* Navigation */
@@ -122,8 +129,12 @@ nav {
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: center; /* Centers the whole menu */
-  gap: var(--nav-gap);
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0;
+  width: 100%;
 }
 
 nav a {
@@ -156,19 +167,20 @@ nav a.active {
 nav a:active {
   transform: scale(0.96);
 }
+/* End of Navigation */
 
 
 /* Hero Section */
 .hero-index {
-  min-height: 40vh;
+  min-height: 50vh; /* Ensures the hero section takes up 50% of the viewport height */
   display: flex;
-  align-items: center; /* Vertical center */
-  padding: 60px 0;
+  align-items: center;
+  padding: 60px 0; 
   width: 100%;
-  background-image: url('image/Road_img.png');
+  background-image: url("image/Road_img.png");
   background-size: 150%;
   background-position: center;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
 }
 
 .hero-content {
@@ -184,203 +196,494 @@ nav a:active {
   font-size: 48px;
   font-weight: 700;
   line-height: 1.2;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   margin: auto;
-  max-width: 60%;
+  max-width: 50%;
   color: var(--text-dark);
 }
 
 .hero-content p {
-  font-size: 14px;
-  color: var(--text-muted);
+  font-size: 15px;
+  color: var(--text-subtle);
   max-width: 600px;
-  margin: 0 auto; /* Centers the paragraph block */
+  margin: 0 auto;
 }
+/* End of Hero Section */
 
+/* Global width for all content */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 0 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+} 
 
 /* Content section page structure*/
 .content-section {
-    padding: 16px 0; /* Consistent vertical breathing room for all page sections*/
+  padding: 16px 0; /* Consistent vertical breathing room for all page sections*/
 }
 
-/* Global paragraph styling for these sections */
+/* Global paragraph styling for sections */
 .content-section p {
-  line-height: 1.8;          
-  max-width: 100%;          
+  line-height: 1.8;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   color: var(--text-subtle);
 }
 
 .content-section h3 {
-  line-height: 1.8;          
-  max-width: 100%;         
+  line-height: 1.8;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   color: var(--text-dark);
 }
+/* End of content section page structure*/
 
 
 /* Map container */
 .map-container {
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    border-radius: 18px;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 18px;
+  max-width: var(--max-width);
+  display: block;
+  padding: 0 20px;
+}
+
+.map-container figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  border: 1.5px solid var(--bg-subtle);
+}
+
+#leaflet-map {
+  height: 650px;
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
 }
 
 .map-container svg {
-    width: 100%;
-    height: auto;       
-    display: block;    
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
 }
 
 /* Map legend */
 .map-legend {
-    position: absolute;
-    bottom: 60px;
-    left: 20px;
-    background-color: var(--primary-color);
-    padding: 12px 16px;
-    border-radius: 6px; 
-    border: 1px solid #343434;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
+  position: absolute;
+  bottom: 60px;
+  left: 40px;
+  background-color: var(--primary-color);
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid #343434;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.legend {
+  position: absolute;
+  bottom: 60px;
+  right: 40px;
+  background-color: var(--primary-color);
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid #343434;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.wm2-legend {
+  position: absolute;
+  bottom: 60px;
+  left: 40px;
+  background-color: var(--bg-white);
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid #d7d7d7;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.wm2-label {
+  font-size: 13px;
+  font-family: var(--font-body);
+  color: var(--bg-primary);
+  font-weight: 500;
+  text-align: left;
+  align-items: center;
+  line-height: 1;
+}
+
+.pin-box {
+  position: absolute;
+  z-index: 10;
+  display: inline-block;
+}
+
+/* Tooltip styling */
+.tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary-color);
+  color: var(--bg-white);
+  font-family: var(--font-body);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 11;
+  margin-bottom: 24px;
+}
+
+.rect-container1:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Show tooltip on hover */
+.pin-box:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Map legend list styling */
+.container ul {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+/* Map pins */
+.overlay-point {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 3;
+}
+
+.overlay-point:hover {
+  transition: transform 0.5s ease;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Market Area Rectangle */
+.overlay-rect {
+  position: absolute;
+  left: 28%;
+  top: 25%;
+  width: 15%;
+  height: 17%;
+  border: 3px solid #ff7800;
+  background-color: rgba(255, 120, 0, 0.2);
+  z-index: 2;
+}
+
+/* Tooltip for the market area rectangle */
+.overlay-rect:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  bottom: 10%;
+}
+
+/* Map pin styling */
+.map-pin {
+  width: 18px;
+  height: 18px;
+  display: block;
+  border: none;
 }
 
 /* Map legend  item structure*/
 .legend-item {
-    display: flex;
-    align-items: center;    /* Vertically centers icon and text */
-    justify-content: flex-start; /* Forces alignment to the left */
-    gap: 8px;              
-    margin-bottom: 8px; 
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
 }
+
 
 /*legend label property */
 .label {
-    font-size: 13px;
-    font-family: var(--font-body);
-    color: var(--bg-subtle);
-    font-weight: 500;    /* Slightly bolder for clarity */
+  font-size: 13px;
+  font-family: var(--font-body);
+  color: var(--bg-subtle);
+  font-weight: 500;
 }
 
 /*legend svg */
 .legend-svg {
-    width: 18px;      
-    height: 18px;
-    display: block;
-    object-fit: contain;
-    border-radius: 0;
-    border: none;
+  width: 18px;
+  height: 18px;
+  display: block;
+  border: none;
 }
 /* End of Map container */
+
+
 
 /* Start of SVG Styling  */
 /* Boundary Area Styling (Permanent Override) */
 #Boundary_Area path {
-    fill: #222732;
-    stroke: #7d7d7d;
-    stroke-width: 3px;
-    transition: all 0.3s ease;
-    cursor: pointer;
+  fill: #222732;
+  stroke: #7d7d7d;
+  stroke-width: 3px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 #Boundary_Area:hover path {
-    fill-opacity: 0.8;
-    stroke: var(--bg-white);
-    stroke-width: 5px;
+  fill-opacity: 0.8;
+  stroke: var(--bg-white);
+  stroke-width: 5px;
 }
 
 /* Light Road Styling */
 #Lightroad path {
-    fill: none;
-    stroke: #eaf0ff;
-    stroke-width: 5.29px;
-    transition: all 0.3s ease;
-    cursor: pointer;
+  fill: none;
+  stroke: #eaf0ff;
+  stroke-width: 5.29px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 #Lightroad:hover path {
-    stroke-width: 8px;
-    filter: blur(6px);
+  stroke-width: 8px;
+  filter: blur(6px);
 }
-
 
 /* 17m Buffer Circle Styling */
 #_17m_circle circle {
-    fill: #0d0f12;
-    fill-opacity: 0.2;
-    stroke: var(--bg-white);
-    stroke-width: 1px;
-    cursor: pointer;
+  fill: #0d0f12;
+  fill-opacity: 0.2;
+  stroke: var(--bg-white);
+  stroke-width: 1px;
+  cursor: pointer;
 }
+
 #_17m_circle circle:hover {
-    fill: #0d0f12;
-    fill-opacity: 0.4;
-    stroke: var(--bg-white);
-    stroke-width: 1.5px;
-    filter: blur(2px);
+  fill: #0d0f12;
+  fill-opacity: 0.4;
+  stroke: var(--bg-white);
+  stroke-width: 1.5px;
+  filter: blur(2px);
 }
 
 /*  SVG Text Labels */
 #_17m-text {
-    fill: var(--bg-white);
-    transition: opacity 0.3s ease;
+  fill: var(--bg-white);
+  transition: opacity 0.3s ease;
 }
 
 #_17m-text:hover {
-    opacity: 1;
-    fill: var(--bg-white);
+  opacity: 1;
+  fill: var(--bg-white);
 }
+
 /* End of SVG Styling */
-
-
 
 /* Styling Hand-Coded Legend */
 #map-legend text {
-    transition: fill 0.3s ease, opacity 0.3s ease;
-    font-size: 40px;
-    font-family: var(--font-body);
+  transition:
+    fill 0.3s ease,
+    opacity 0.3s ease;
+  font-size: 40px;
+  font-family: var(--font-body);
 }
 
 /* Change look on hover, overriding SVG attribute */
 #map-legend:hover text {
-    fill: #ffffff; /* Overrides the #ababab attribute */
-    opacity: 1;
+  fill: #ffffff; /* Overrides the #ababab attribute */
+  opacity: 1;
 }
 
 #map-legend rect:first-child {
-    transition: stroke-width 0.3s ease, fill-opacity 0.3s ease;
+  transition:
+    stroke-width 0.3s ease,
+    fill-opacity 0.3s ease;
 }
 
 #map-legend:hover rect:first-child {
-    stroke-width: 8px; /* Makes the legend border thicker on hover */
-    fill-opacity: 0.95;
+  stroke-width: 8px; /* Makes the legend border thicker on hover */
+  fill-opacity: 0.95;
 }
 /* End of styling  Hand-Coded Legend */
 
 
-footer {
+
+/* Responsive Design - Tablet & Mobile */
+@media (max-width: 992px) {
+  h1 {
+    font-size: 38px;
+  }
+
+  .hero-content h1 {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Navigation */
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row; /* Keep them side-by-side */
+    flex-wrap: wrap; /* Allows items to drop to next line */
+    justify-content: center;
+    gap: 10px; /* Space between the buttons */
+    padding: 10px 0;
     width: 100%;
-    background-color: var(--bg-white); 
-    color: var(--text-subtle);
-    font-size: 13px;
-    padding: 16px 0; /* Plenty of space at the bottom */
-    margin-top: 80px; 
+  }
+
+  nav a {
+    width: 100%;
+    text-align: auto;
+  }
+
+  /* Hero Section */
+  .hero-index {
+    min-height: 60vh;
+    padding: 120px 0 40px;
+    background-size: cover;
+  }
+
+  .hero-content h1 {
+    font-size: 24px;
+    max-width: 90%;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+    max-width: 90%;
+  }
+
+  /* General Typography */
+  p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  h3 {
+    font-size: 17px;
+  }
+
+  /* Container Spacing */
+  .navigation {
+    padding: 0 16px;
+  }
+
+  /* Map Pins */
+  .overlay-point {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Tooltip */
+  .tooltip-text {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  /* Market Area Rectangle */
+  .overlay-rect {
+    border-width: 2px;
+  }
+
+  /* Mobile Legend */
+  .wm2-legend {
+    position: absolute;
+    top: 12px;
+    right: 30px;
+    left: auto;
+    bottom: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    z-index: 20;
+  }
+
+  /* Legend Items */
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    justify-content: flex-start;
+  }
+
+  /* Legend Labels */
+  .wm2-label {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  /* Legend Icons */
+  .map-pin,
+  .legend-svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 40px;
+  }
+}
+
+
+/* Footer styling */ 
+footer {
+  width: 100%;
+  background-color: var(--bg-white);
+  color: var(--text-subtle);
+  font-size: 13px;
+  padding: 16px 0;
+  /* Plenty of space at the bottom */
+  margin-top: 80px;
 }
 
 .footer-content {
-    font-family: var(--font-body);
-    display: flex;
-    flex-direction: column; /* Stacks items vertically */
-    align-items: center;    /* Centers items horizontally */
-    text-align: center;     /* Centers the text inside the items */
-    gap: 20px;              
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  /* Stacks items vertically */
+  align-items: center;
+  /* Centers items horizontally */
+  text-align: center;
+  /* Centers the text inside the items */
+  gap: 20px;
 }

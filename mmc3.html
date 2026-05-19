@@ -11,35 +11,194 @@
 
 <body>
     <header>
-       <nav class="navigation">
-            <!--the navigation does not have to be in the header, it can also be placed somewhere else-->
+        <nav class="navigation">
             <ul>
-                <!--the navigation items correspond with the upcomming assignments and you fill the pages progressively-->
-                <!--Home - WM1-->
                 <li><a href="index.html">Home - WM1</a></li>
-                <!--SVG - MMC2-->
                 <li><a href="mmc2.html">MMC2</a></li>
-                <!--Static map and Leaflet map - WM2-->
                 <li><a href="wm2.html">WM2</a></li>
-                <!--Responsive - MMC3-->
                 <li><a href="mmc3.html" class="active">MMC3</a></li>
-                <!--Basemap - WM3-->
                 <li><a href="wm3.html">WM3</a></li>
             </ul>
         </nav>
     </header>
+
     <main>
-        <section class="">
-            <div class="">
-                <h1></h1>
+
+        <!-- Hero section -->
+        <section class="hero-index">
+            <div class="hero-content">
+                <h1>
+                    Adaptive design for accessibility: Map of Mile 12 Terminal and FUTA Campus, Nigeria
+                </h1>
+                <p>
+                    Responsive map design for mobile and desktop user experiences.
+                </p>
             </div>
         </section>
+
+
+        <!-- Introduction text -->
+        <section class="content-section">
+            <div class="container">
+                <p>The map design is built to be responsive, ensuring a good user experience on both mobile and desktop
+                    devices. The layout adjusts based on the screen size, providing optimal viewing and interaction
+                    opportunities for users accessing the map from various devices.</p>
+                <p>Two maps are presented to showcase the responsive design capabilities across different screen sizes,
+                    with a manually coded static map (using a background image + HTML-based overlays) with an HTML coded
+                    legend and a map image having two resolutions (one default low res. and a high res. for larger
+                    screens) to demonstrate how the map adapts to different screen sizes and resolutions.</p>
+            </div>
+        </section>
+
+
+        <!-- Map with HTML-based overlays -->
+        <section class="content-section">
+            <div class="map-container">
+                <figure>
+                    <img src="image/mile-12-termina-1x.jpeg"
+                        srcset="image/mile-12-termina-1x.jpeg 1x, image/mile-12-terminal-hd.jpeg 2x"
+                        alt="Figure 1: Mile 12 Terminal Area base map" draggable="false">
+                    <figcaption>Google Maps Image of Mile 12 Area</figcaption>
+                </figure>
+
+                <!-- Point Symbols with Tooltips -->
+                <div class="pin-box" style="left: 35%; top: 30%;">
+                    <img src="image/markert-pin.svg" class="overlay-point" alt="Market">
+                    <span class="tooltip-text">Mile 12 Market</span>
+                </div>
+
+                <div class="pin-box" style="left: 67%; top: 60%;">
+                    <img src="image/pedestral-pin.svg" class="overlay-point" alt="Bridge">
+                    <span class="tooltip-text">Pedestrian Bridge</span>
+                </div>
+
+                <div class="pin-box" style="left: 67%; top: 67%;">
+                    <img src="image/terminal-pin.svg" class="overlay-point" alt="Terminal">
+                    <span class="tooltip-text">Mile 12 Terminal</span>
+                </div>
+
+                <!-- Rectangular Area with Tooltip -->
+                <div class="overlay-rect">
+                    <span class="tooltip-text">Mile 12 Central Market</span>
+                </div>
+
+                <!-- Legend -->
+                <div class="wm2-legend">
+                    <div class="legend-item">
+                        <img src="image/marketpng.png" class="map-pin" alt="Mile 12 Market">
+                        <span class="wm2-label">Mile 12 Market</span>
+                    </div>
+                    <div class="legend-item">
+                        <img src="image/terminal.png" class="map-pin" alt="Bus Terminal">
+                        <span class="wm2-label">Bus Terminal</span>
+                    </div>
+                    <div class="legend-item">
+                        <img src="image/pedestral.png" class="map-pin" alt="Pedestrian Bridge">
+                        <span class="wm2-label">Pedestrian Bridge</span>
+                    </div>
+                    <div class="legend-item">
+                        <div
+                            style="height:20px; width: 20px; background-color: rgba(255, 120, 0, 0.2); border:2px solid #ff7800; border-radius: 4px;">
+                        </div>
+                        <span class="wm2-label">Market Area</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Why the Project section -->
+        <section class="content-section">
+            <div class="container">
+                <h3>Why the Project</h3>
+                <p>Streetlight mapping was therefore used as a practical tool to identify black and light zones across
+                    the campus. The project aimed to assess and categorise streetlights based on their working condition
+                    and power source, identify clusters of damaged or non-functional streetlights for targeted
+                    maintenance, locate old streetlight removals for better organisation along roads, and map dark
+                    regions on campus, especially road networks. It also sought to provide university authorities with a
+                    decision map showing areas that require urgent repairs and upgrades.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- Responsive Images with srcset -->
+        <section class="content-section">
+            <div class="map-container">
+                <figure>
+                    <img src="image/StreetLight-FUTA-1x.jpeg"
+                        srcset="image/StreetLight-FUTA-1x.jpeg 1x, image/StreetLight-FUTA-hd.jpeg 2x"
+                        alt="Figure 1: Map showing the street light poles locations and road network.">
+                    <figcaption>Map showing the street light poles locations and road network in Federal University of
+                        Technology, Akure.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+
+        <!--Final Note Section-->
+        <section class="content-section">
+            <div class="container">
+                <h3>Final Notes</h3>
+                <p>Overall the website successfully implemented a responsive design that ensures optimal viewing
+                    experience across different devices and screen sizes. Below are some key features implemented:</p>
+                <ul>
+                    <li>
+                        <h4>Responsive Overlays</h4>
+                        <p>Used percentage-based absolute positioning and CSS transforms to ensure static map markers
+                            remain geographically accurate on all screen sizes.</p>
+                    </li>
+                    <li>
+                        <h4>Custom Iconography</h4>
+                        <p>Designed and implemented three distinct custom icon sets for various infrastructure types
+                            (Transit, Pedestrian, Market). Icon size are adjusted for different screen sizes.</p>
+                    </li>
+                    <li>
+                        <h4>Interactive Feedback</h4>
+                        <p>Integrated CSS hover effects on markers and centered the map view to the location of the area
+                            of interest.</p>
+                    </li>
+                    <li>
+                        <h4>Legend Repositioning</h4>
+                        <p>The map legend moves from bottom-left on desktop to top-right on mobile so it never overlaps
+                            key map features at small screen widths.</p>
+                    </li>
+                    <li>
+                        <h4>Responsive Images with srcset</h4>
+                        <p>Both map images use <code>srcset</code> with pixel density descriptors (<code>1x</code> /
+                            <code>2x</code>), so standard screens load the lighter image while high-DPI and Retina
+                            screens automatically receive the high-resolution version.
+                        </p>
+                    </li>
+                    <li>
+                        <h4>Full-Width Nav Tap Targets</h4>
+                        <p>Navigation links expand to full container width on mobile for easy thumb access on small
+                            touchscreens.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
+
+        <!-- Credits section -->
+        <section class="content-section">
+            <div class="container">
+                <h3>Credits</h3>
+                <p>Source: YouthMappersFUTA | Design: Michael Olanrewaju | CC BY 4.0</p>
+            </div>
+        </section>
+
     </main>
+
+
+    <!--Footer section-->
     <footer>
-      <!--div class="footer-content"><p>&copy; 2024 | Michael Olanrewaju | Carto-Webmapping</p></div>
+        <div class="footer-content" <p>&copy; 2026 | Michael Olanrewaju | Carto-Webmapping</p>
         </div>
-        --> 
     </footer>
+
 </body>
 
 </html>

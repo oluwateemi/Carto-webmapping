@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carto-Webmapping</title>
+    <title>Accessibility Map in Lagos Mile 12</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/jpg" href="image/Favicon.png" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -14,13 +16,13 @@
         <nav class="navigation">
             <!--the navigation does not have to be in the header, it can also be placed somewhere else-->
             <ul>
-                <!--the navigation items correspond with the upcomming assignments and you fill the pages progressively-->
+                <!--the navigation items correspond with the upcoming assignments and you fill the pages progressively-->
                 <!--Home - WM1-->
                 <li><a href="index.html">Home - WM1</a></li>
                 <!--SVG - MMC2-->
                 <li><a href="mmc2.html">MMC2</a></li>
                 <!--Static map and Leaflet map - WM2-->
-                <li><a href="wm2.html"  class="active">WM2</a></li>
+                <li><a href="wm2.html" class="active">WM2</a></li>
                 <!--Responsive - MMC3-->
                 <li><a href="mmc3.html">MMC3</a></li>
                 <!--Basemap - WM3-->
@@ -29,16 +31,196 @@
         </nav>
     </header>
     <main>
-        <section class="">
-            <div class="">
-                <h1></h1>
+        <!--Hero section-->
+        <section class="hero-index">
+            <div class="hero-content">
+                <h1>
+                    Accessibility Map in Lagos Mile 12: Bus Stop Accessibility and
+                    Pedestrian Safety.
+                </h1>
+                <p>
+                    The project focuses on mapping the accessibility of bus stops and
+                    pedestrian safety in the Mile 12 area of Lagos, Nigeria.
+                </p>
             </div>
         </section>
+
+        <!--Introduction image section-->
+        <section class="content-section">
+            <div class="map-container">
+
+                <h3>Static Map: Google imagery of Lagos Mile 12</h3>
+                <p> This map shows the layout of the Mile 12 area in Lagos, Nigeria, with key location hand coded precisely on the
+                    map, using custom made iconography. 
+                </p>
+
+                <figure>
+                    <img src="image/mile-12-terminal-hd.jpeg" alt="Figure 1: Mile 12 Terminal Area base map"
+                        draggable="false">
+                    <figcaption>Google Maps Image of Mile 12 Area</figcaption>
+                </figure>
+
+
+                <!-- Point Symbols with Tooltips -->
+                <div class="pin-box" style="left: 35%; top: 30%;">
+                    <img src="image/markert-pin.svg" class="overlay-point" alt="Market">
+                    <span class="tooltip-text">Mile 12 Market</span>
+                </div>
+
+                <div class="pin-box" style="left: 67%; top: 60%;">
+                    <img src="image/pedestral-pin.svg" class="overlay-point" alt="Bridge">
+                    <span class="tooltip-text">Pedestrian Bridge</span>
+                </div>
+
+                <div class="pin-box" style="left: 67%; top: 67%;">
+                    <img src="image/terminal-pin.svg" class="overlay-point" alt="Terminal">
+                    <span class="tooltip-text">Mile 12 Terminal</span>
+                </div>
+
+                <!-- Rectangular Area with Tooltip -->
+                <div class="overlay-rect">
+                    <span class="tooltip-text">Mile 12 Central Market</span>
+                </div>
+
+                <!--Legend container -->
+                <!--I used the div structure to setup the legend and styled it in css, in comparison using the table structure , this is more easily to use and understand and also more flexible to add more items in the future-->
+                <div class="wm2-legend">
+                    <div class="legend-item">
+                        <img src="image/marketpng.png" class="map-pin" alt="Mile 12 Market">
+                        <span class="wm2-label">Mile 12 Market</span>
+                    </div>
+
+                    <!-- second legend item -->
+                    <div class="legend-item">
+                        <img src="image/terminal.png" class="map-pin" alt="Bus Terminal">
+                        <span class="wm2-label">Bus Terminal</span>
+                    </div>
+                    <!-- Third legend item -->
+                    <div class="legend-item">
+                        <img src="image/pedestral.png" class="map-pin" alt="Pedestrian Bridge">
+                        <span class="wm2-label">Pedestrian Bridge</span>
+                    </div>
+
+                    <!-- I tried using an SVG rectangle for the legend which caused alignment issues (the SVG was offset relative to other items), so a styled div is used here for better alignment and easier future adjustments. -->
+                    <div class="legend-item">
+                        <div
+                            style="height:20px; width: 20px; background-color: rgba(255, 120, 0, 0.2); border:2px solid #ff7800; border-radius: 4px;">
+                        </div>
+                        <span class="wm2-label">Market Area</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!--Map container-->
+        <section class="content-section">
+            <div class="container">
+                <h3>Interactive Map: Lagos Mile 12</h3>
+                <p> This interactive map of the Mile 12 area in Lagos, Nigeria, highlights key locations such as the
+                    Mile 12 Market, Bus Terminal, and Pedestrian Bridge. The map uses custom SVG icons for clear visual
+                    representation and includes tooltips for each point of interest. Additionally, a highlighted
+                    rectangle indicates the central market area, providing users with an engaging way to explore
+                    accessibility and safety features in this bustling urban environment.</p>
+                </p>
+
+                <div id="leaflet-map"></div>
+                <figcaption>OpenStreetMap of Mile 12 Area</figcaption>
+                <script>
+                    // Map centered on Mile 12, Lagos latitude and longitude with a zoom level of 16
+                    var map = L.map('leaflet-map').setView([6.60903, 3.39403], 16);
+
+                    // Add the OpenStreetMap Tile Layer
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+
+                    //Defining the icons on the map, including the bus terminal, pedestrian bridge, and market access point, using custom SVG icons for better visual representation. Each icon is sized and anchored appropriately for clear display on the map.
+                    var terminalIcon = L.icon({
+                        iconUrl: 'image/terminal-pin.svg', // Icon for the Bus Terminal
+                        iconSize: [48, 48],
+                        iconAnchor: [24, 48],
+                        popupAnchor: [0, -48] // Ensures the popup appears above the pin
+                    });
+
+                    var pedestrianIcon = L.icon({
+                        iconUrl: 'image/pedestral-pin.svg', // Icon for the Bridge
+                        iconSize: [48, 48],
+                        iconAnchor: [24, 48],
+                        popupAnchor: [0, -48] // Ensures the popup appears above the pin
+                    });
+
+                    var marketIcon = L.icon({
+                        iconUrl: 'image/markert-pin.svg', // Icon for Market Access
+                        iconSize: [48, 48],
+                        iconAnchor: [24, 48],
+                        popupAnchor: [0, -48] // Ensures the popup appears above the pin
+                    });
+
+
+                    // Add Markers using the specific Icon Sets and on click, each marker will display a popup with the name of the location, providing users with interactive information about key points of interest in the Mile 12 area.
+                    L.marker([6.6056, 3.3997], { icon: terminalIcon })
+                        .addTo(map)
+                        .bindPopup("<b>Mile 12 Bus Terminal</b>");
+
+                    L.marker([6.6061, 3.3993], { icon: pedestrianIcon })
+                        .addTo(map)
+                        .bindPopup("<b>Pedestrian Bridge</b>");
+
+                    L.marker([6.609129, 3.393889], { icon: marketIcon })
+                        .addTo(map)
+                        .bindPopup("<b>Mile 12 Market</b>");
+
+                    // Market area overlay using a rectangle to highlight the market area, styled with a semi-transparent fill and a border for clear visibility. The rectangle is interactive, allowing users to click on it to view a popup with information about the market area.
+                    var areaBounds = [[6.607725, 3.391504], [6.610826, 3.396032]];
+                    L.rectangle(areaBounds, {
+                        color: "#ff7800",
+                        weight: 2,
+                        fillOpacity: 0.2
+                    }).addTo(map).bindPopup("<b>Mile 12 Central Market</b>");
+
+                </script>
+
+            </div>
+        </section>
+
+        <!--Final Note Section-->
+        <section class="content-section">
+            <div class="container">
+                <h3>Final Notes</h3>
+                <ul>
+                    <li><strong>
+                            <h4>Responsive Overlays:</h4>
+                        </strong>
+                        <p>Used percentage-based absolute positioning and CSS
+                            transforms to ensure static map markers remain geographically accurate on all screen sizes.
+                        </p>
+                    </li>
+                    <li><strong>
+                            <h4>Custom Iconography:</h4>
+                        </strong>
+                        <p>Designed and implemented three distinct custom icon sets
+                            for various infrastructure types (Transit, Pedestrian, Market).</p>
+                    </li>
+                    <li><strong>
+                            <h4>Interactive Feedback:</h4>
+                        </strong>
+                        <p>Integrated CSS hover effects on markers and centered the map view to the location of the area
+                            of interest.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
     </main>
+
+    
+    <!--Footer section-->
     <footer>
-      <!--div class="footer-content"><p>&copy; 2024 | Michael Olanrewaju | Carto-Webmapping</p></div>
+        <div class="footer-content" <p>&copy; 2026 | Michael Olanrewaju | Carto-Webmapping</p>
         </div>
-        --> 
     </footer>
 </body>
 
