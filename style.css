@@ -675,8 +675,8 @@ nav a:active {
 
   .overlay-point {
   position: relative;
-  width: 32px;
-  height: 32px;
+  height: 24px;
+  max-width: 24px !important;
  }
 
   /* Legend Items */
