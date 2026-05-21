@@ -50,37 +50,42 @@
             <div class="map-container">
 
                 <h3>Static Map: Google imagery of Lagos Mile 12</h3>
-                <p> This map shows the layout of the Mile 12 area in Lagos, Nigeria, with key location hand coded precisely on the
-                    map, using custom made iconography. 
+                <p> This map shows the layout of the Mile 12 area in Lagos, Nigeria, with key location hand coded
+                    precisely on the
+                    map, using custom made iconography.
                 </p>
 
-                <figure>
-                    <img src="image/mile-12-terminal-hd.jpeg" alt="Figure 1: Mile 12 Terminal Area base map"
-                        draggable="false">
+                <figure class="map-figure">
+                    <!-- NEW WRAPPER START -->
+                    <div class="image-overlay-wrapper">
+                        <img src="image/mile-12-terminal-hd.jpeg" alt="Figure 1: Mile 12 Terminal Area base map"
+                            draggable="false">
+
+                        <!-- Point Symbols with Tooltips (MOVED INSIDE WRAPPER) -->
+                        <div class="pin-box" style="left: 35%; top: 30%;">
+                            <img src="image/markert-pin.svg" class="overlay-point" alt="Market">
+                            <span class="tooltip-text">Mile 12 Market</span>
+                        </div>
+                        <div class="pin-box" style="left: 67%; top: 60%;">
+                            <img src="image/pedestral-pin.svg" class="overlay-point" alt="Bridge">
+                            <span class="tooltip-text">Pedestrian Bridge</span>
+                        </div>
+                        <div class="pin-box" style="left: 67%; top: 67%;">
+                            <img src="image/terminal-pin.svg" class="overlay-point" alt="Terminal">
+                            <span class="tooltip-text">Mile 12 Terminal</span>
+                        </div>
+
+                        <!-- Rectangular Area with Tooltip (MOVED INSIDE WRAPPER) -->
+                        <div class="overlay-rect">
+                            <span class="tooltip-text">Mile 12 Central Market</span>
+                        </div>
+                    </div>
+                    <!-- NEW WRAPPER END -->
+
                     <figcaption>Google Maps Image of Mile 12 Area</figcaption>
                 </figure>
 
 
-                <!-- Point Symbols with Tooltips -->
-                <div class="pin-box" style="left: 35%; top: 30%;">
-                    <img src="image/markert-pin.svg" class="overlay-point" alt="Market">
-                    <span class="tooltip-text">Mile 12 Market</span>
-                </div>
-
-                <div class="pin-box" style="left: 67%; top: 60%;">
-                    <img src="image/pedestral-pin.svg" class="overlay-point" alt="Bridge">
-                    <span class="tooltip-text">Pedestrian Bridge</span>
-                </div>
-
-                <div class="pin-box" style="left: 67%; top: 67%;">
-                    <img src="image/terminal-pin.svg" class="overlay-point" alt="Terminal">
-                    <span class="tooltip-text">Mile 12 Terminal</span>
-                </div>
-
-                <!-- Rectangular Area with Tooltip -->
-                <div class="overlay-rect">
-                    <span class="tooltip-text">Mile 12 Central Market</span>
-                </div>
 
                 <!--Legend container -->
                 <!--I used the div structure to setup the legend and styled it in css, in comparison using the table structure , this is more easily to use and understand and also more flexible to add more items in the future-->
@@ -216,7 +221,7 @@
 
     </main>
 
-    
+
     <!--Footer section-->
     <footer>
         <div class="footer-content" <p>&copy; 2026 | Michael Olanrewaju | Carto-Webmapping</p>

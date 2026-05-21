@@ -73,13 +73,27 @@ p {
 /* Global img structure*/
 figure img {
   max-width: 100%;
-  height: auto; /* Keeps the image from looking squashed */
-  display: block; /* Removes the tiny gap at the bottom of images */
-  margin: 0 auto;   /* Centers the image if it's smaller than the container */
-  border: 1.5px solid var(--bg-subtle);
+  height: auto;
+  /* Keeps the image from looking squashed */
+  display: block;
+  /* Removes the tiny gap at the bottom of images */
+  margin: 0 auto;
+  /* Centers the image if it's smaller than the container */
   border-radius: 18px;
+  border: 1.5px solid var(--bg-subtle);
+  
 }
-
+.map-figure img {
+  max-width: 100%;
+  height: auto;
+  /* Keeps the image from looking squashed */
+  display: block;
+  /* Removes the tiny gap at the bottom of images */
+  margin: 0 auto;
+  /* Centers the image if it's smaller than the container */
+ 
+  border: none !important;
+}
 
 figcaption {
   font-family: var(--font-body);
@@ -87,8 +101,10 @@ figcaption {
   font-size: 13px;
   color: var(--text-subtle);
   font-style: italic;
-  margin-top: 16px; /* 16px space between image and caption */
-  margin-bottom: 8px;  /* 8px space before the next paragraph starts */
+  margin-top: 16px;
+  /* 16px space between image and caption */
+  margin-bottom: 8px;
+  /* 8px space before the next paragraph starts */
   line-height: 1.8;
 }
 
@@ -97,8 +113,9 @@ figcaption {
 .navigation {
   width: 100%;
   max-width: var(--max-width);
-  padding: 0 20px; /* Essential for mobile view */
-  margin-top: 16px; 
+  padding: 0 20px;
+  /* Essential for mobile view */
+  margin-top: 16px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -167,15 +184,17 @@ nav a.active {
 nav a:active {
   transform: scale(0.96);
 }
+
 /* End of Navigation */
 
 
 /* Hero Section */
 .hero-index {
-  min-height: 50vh; /* Ensures the hero section takes up 50% of the viewport height */
+  min-height: 50vh;
+  /* Ensures the hero section takes up 50% of the viewport height */
   display: flex;
   align-items: center;
-  padding: 60px 0; 
+  padding: 60px 0;
   width: 100%;
   background-image: url("image/Road_img.png");
   background-size: 150%;
@@ -184,7 +203,8 @@ nav a:active {
 }
 
 .hero-content {
-  text-align: center; /* This centers the H1 and P text */
+  text-align: center;
+  /* This centers the H1 and P text */
   width: 100%;
   gap: 16px;
   display: flex;
@@ -208,6 +228,7 @@ nav a:active {
   max-width: 600px;
   margin: 0 auto;
 }
+
 /* End of Hero Section */
 
 /* Global width for all content */
@@ -218,11 +239,13 @@ nav a:active {
   display: block;
   margin-left: auto;
   margin-right: auto;
-} 
+  position: relative;
+}
 
 /* Content section page structure*/
 .content-section {
-  padding: 16px 0; /* Consistent vertical breathing room for all page sections*/
+  padding: 16px 0;
+  /* Consistent vertical breathing room for all page sections*/
 }
 
 /* Global paragraph styling for sections */
@@ -241,6 +264,7 @@ nav a:active {
   margin-right: auto;
   color: var(--text-dark);
 }
+
 /* End of content section page structure*/
 
 
@@ -262,6 +286,7 @@ nav a:active {
   border-radius: 18px;
   border: 1.5px solid var(--bg-subtle);
 }
+
 
 #leaflet-map {
   height: 650px;
@@ -339,7 +364,7 @@ nav a:active {
 .pin-box {
   position: absolute;
   z-index: 10;
-  display: inline-block;
+  display: block;
 }
 
 /* Tooltip styling */
@@ -381,9 +406,9 @@ nav a:active {
 
 /* Map pins */
 .overlay-point {
-  position: absolute;
-  width: 40px;
-  height: 40px;
+  position: relative;
+  width: 48px;
+  height: 48px;
   transform: translate(-50%, -50%);
   cursor: pointer;
   z-index: 3;
@@ -420,7 +445,12 @@ nav a:active {
   display: block;
   border: none;
 }
-
+.map-pin {
+  width: 18px;
+  height: 18px;
+  display: block;
+  border: none;
+}
 /* Map legend  item structure*/
 .legend-item {
   display: flex;
@@ -446,6 +476,7 @@ nav a:active {
   display: block;
   border: none;
 }
+
 /* End of Map container */
 
 
@@ -521,22 +552,37 @@ nav a:active {
 
 /* Change look on hover, overriding SVG attribute */
 #map-legend:hover text {
-  fill: #ffffff; /* Overrides the #ababab attribute */
+  fill: #ffffff;
+  /* Overrides the #ababab attribute */
   opacity: 1;
 }
 
 #map-legend rect:first-child {
   transition:
-    stroke-width 0.3s ease,
-    fill-opacity 0.3s ease;
+  stroke-width 0.3s ease,
+  fill-opacity 0.3s ease;
 }
 
 #map-legend:hover rect:first-child {
-  stroke-width: 8px; /* Makes the legend border thicker on hover */
+  stroke-width: 8px;
+  /* Makes the legend border thicker on hover */
   fill-opacity: 0.95;
 }
-/* End of styling  Hand-Coded Legend */
+/* Add this to your stylesheet */
+.image-overlay-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: max-content; /* Ensures it perfectly wraps the image height */
+}
+#map {
+  height: 700px;
+  width: 100%;
+  border-radius: 18px;
+  position: relative;
+  }
 
+/* End of styling  Hand-Coded Legend */
 
 
 /* Responsive Design - Tablet & Mobile */
@@ -548,6 +594,7 @@ nav a:active {
   .hero-content h1 {
     max-width: 80%;
   }
+
 }
 
 @media (max-width: 768px) {
@@ -556,10 +603,13 @@ nav a:active {
   nav ul {
     list-style: none;
     display: flex;
-    flex-direction: row; /* Keep them side-by-side */
-    flex-wrap: wrap; /* Allows items to drop to next line */
+    flex-direction: row;
+    /* Keep them side-by-side */
+    flex-wrap: wrap;
+    /* This allows items to drop to next line */
     justify-content: center;
-    gap: 10px; /* Space between the buttons */
+    gap: 10px;
+    /* Space between the buttons */
     padding: 10px 0;
     width: 100%;
   }
@@ -601,12 +651,7 @@ nav a:active {
     padding: 0 16px;
   }
 
-  /* Map Pins */
-  .overlay-point {
-    width: 28px;
-    height: 28px;
-  }
-
+  
   /* Tooltip */
   .tooltip-text {
     font-size: 11px;
@@ -620,21 +665,19 @@ nav a:active {
 
   /* Mobile Legend */
   .wm2-legend {
-    position: absolute;
-    top: 12px;
-    right: 30px;
-    left: auto;
-    bottom: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 10px;
+    bottom: 48px;
+    left: 28px;
+    top: auto;
+    right: auto;
     padding: 10px 12px;
-    border-radius: 10px;
-    flex-wrap: wrap;
-    z-index: 20;
+    gap: 8px;
   }
+
+  .overlay-point {
+  position: relative;
+  width: 32px;
+  height: 32px;
+ }
 
   /* Legend Items */
   .legend-item {
@@ -643,6 +686,10 @@ nav a:active {
     gap: 6px;
     margin-bottom: 0;
     justify-content: flex-start;
+  }
+
+  #map {
+    height: 500px;
   }
 
   /* Legend Labels */
@@ -665,7 +712,7 @@ nav a:active {
 }
 
 
-/* Footer styling */ 
+/* Footer styling */
 footer {
   width: 100%;
   background-color: var(--bg-white);
